@@ -1,3 +1,6 @@
+--- Use system clipboard globally
+vim.opt.clipboard:append("unnamedplus")
+
 --- Hybrid line numbers
 vim.wo.relativenumber = true
 vim.wo.number = true

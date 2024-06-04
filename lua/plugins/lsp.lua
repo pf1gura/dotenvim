@@ -1,34 +1,15 @@
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
-	callback = function(event)
-		local opts = { buffer = event.buf }
+return {
+	{
+		"williamboman/mason.nvim",
+		config = true
+	},
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			local lspconfig = require('lspconfig')
+			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-		vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set('n', '<leader>vws', function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set('n', ']d', function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set('n', '<leader>vrr', function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
-	end,
-})
-
-local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-require("mason").setup({})
-require("mason-lspconfig").setup({
-	ensure_installed = { "lua_ls", "rust_analyzer" },
-	handlers = {
-		function(server_name)
-			require("lspconfig")[server_name].setup({
-				capabilities = lsp_capabilities,
-			})
-		end,
-		lua_ls = function()
-			require("lspconfig").lua_ls.setup({
+			lspconfig.lua_ls.setup({
 				capabilities = lsp_capabilities,
 				settings = {
 					Lua = {
@@ -46,50 +27,18 @@ require("mason-lspconfig").setup({
 					},
 				},
 			})
-		end,
-	},
-})
 
-local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
+				callback = function(event)
+					local opts = { buffer = event.buf }
 
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
-		end,
-	},
-
-	sources = {
-		{ name = "path" },
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lsp_signature_help" },
-		{ name = "buffer", keyword_length = 3 },
-	},
-
-	mapping = cmp.mapping.preset.insert({
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-		["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-		["<CR>"] = cmp.mapping({
-			i = function(fallback)
-				if cmp.visible() and cmp.get_active_entry() then
-					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-				else
-					fallback()
-				end
-			end,
-			s = cmp.mapping.confirm({ select = true }),
-			c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-		}),
-	}),
-})
-
-require("mason-nvim-dap").setup({
-	ensure_installed = { "codelldb" },
-	handlers = {
-		function(config)
-			require("mason-nvim-dap").default_setup(config)
-		end,
-	},
-})
+					vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
+					vim.keymap.set('n', '<leader>gd', function() vim.lsp.buf.definition() end, opts)
+					vim.keymap.set('n', '<leader>gr', function() vim.lsp.buf.references() end, opts)
+					vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, opts)
+				end,
+			})
+		end
+	}
+}
