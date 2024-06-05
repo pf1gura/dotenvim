@@ -2,8 +2,8 @@ return {
 	{
 		"hrsh7th/cmp-nvim-lsp",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp-signature-help"
-		}
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+		},
 	},
 	{
 		"L3MON4D3/LuaSnip",
@@ -43,7 +43,7 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lsp_signature_help" },
 					{ name = "luasnip" },
-					{ name = "buffer", keyword_length = 3 },
+					{ name = "buffer",                 keyword_length = 3 },
 				}),
 			})
 		end,

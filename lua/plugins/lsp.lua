@@ -1,12 +1,12 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		config = true
+		config = true,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local lspconfig = require('lspconfig')
+			local lspconfig = require("lspconfig")
 			local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			lspconfig.lua_ls.setup({
@@ -33,12 +33,20 @@ return {
 				callback = function(event)
 					local opts = { buffer = event.buf }
 
-					vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
-					vim.keymap.set('n', '<leader>gd', function() vim.lsp.buf.definition() end, opts)
-					vim.keymap.set('n', '<leader>gr', function() vim.lsp.buf.references() end, opts)
-					vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, opts)
+					vim.keymap.set("n", "K", function()
+						vim.lsp.buf.hover()
+					end, opts)
+					vim.keymap.set("n", "<leader>gd", function()
+						vim.lsp.buf.definition()
+					end, opts)
+					vim.keymap.set("n", "<leader>gr", function()
+						vim.lsp.buf.references()
+					end, opts)
+					vim.keymap.set("n", "<leader>ca", function()
+						vim.lsp.buf.code_action()
+					end, opts)
 				end,
 			})
-		end
-	}
+		end,
+	},
 }
