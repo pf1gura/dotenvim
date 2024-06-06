@@ -28,6 +28,28 @@ return {
 				},
 			})
 
+			lspconfig.rust_analyzer.setup({
+				capabilities = lsp_capabilities,
+				settings = {
+					["rust-analyzer"] = {
+						imports = {
+							granularity = {
+								group = "module",
+							},
+							prefix = "self",
+						},
+						cargo = {
+							buildScripts = {
+								enable = true,
+							},
+						},
+						procMacro = {
+							enable = true,
+						},
+					},
+				},
+			})
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
 				callback = function(event)
