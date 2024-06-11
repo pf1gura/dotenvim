@@ -1,0 +1,15 @@
+import = [
+  "~/.config/alacritty/catppuccin-macchiato.toml"
+]
+
+shell = "/opt/homebrew/bin/fish"
+
+[window]
+startup_mode = "Maximized"
+
+[font]
+normal = { family = "Cascadia Code NF", style = "Regular" }
+bold = { style = "Regular" }
+size = 16
+offset = { y = 2 }
+
