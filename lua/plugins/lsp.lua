@@ -30,6 +30,9 @@ return {
 
 			lspconfig.rust_analyzer.setup({
 				capabilities = lsp_capabilities,
+				on_attach = function(_, bufnr)
+					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+				end,
 				settings = {
 					["rust-analyzer"] = {
 						imports = {
@@ -58,12 +61,15 @@ return {
 					vim.keymap.set("n", "K", function()
 						vim.lsp.buf.hover()
 					end, opts)
+
 					vim.keymap.set("n", "<leader>gd", function()
 						vim.lsp.buf.definition()
 					end, opts)
+
 					vim.keymap.set("n", "<leader>gr", function()
 						vim.lsp.buf.references()
 					end, opts)
+
 					vim.keymap.set("n", "<leader>ca", function()
 						vim.lsp.buf.code_action()
 					end, opts)
