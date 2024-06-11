@@ -4,6 +4,11 @@ end
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+set -gx HOMEBREW_NO_ENV_HINTS true
+set -gx EDITOR "nvim"
+set -gx GIT_EDITOR "nvim"
+set -gx PYENV_ROOT "$HOME/.pyenv"
+
 alias cdd="cd $HOME/Developer"
 set fish_greeting
 fish_vi_key_bindings
