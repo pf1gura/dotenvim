@@ -21,7 +21,3 @@ source "$HOME/.cargo/env.fish"
 source ~/.orbstack/shell/init.fish 2>/dev/null || :
 pyenv init - | source
 
-for file in ~/.config/fish/conf.d/*.fish
-    source $file
-end
-
