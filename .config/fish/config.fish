@@ -31,5 +31,7 @@ set -gx PYENV_ROOT "$HOME/.pyenv"
 fish_add_path "$PYENV_ROOT/bin"
 pyenv init - | source
 
+rbenv init - | source
+
 source "$HOME/.cargo/env.fish"
 
