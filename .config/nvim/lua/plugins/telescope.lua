@@ -12,7 +12,9 @@ return {
 				"<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git'}})<cr>",
 				{}
 			)
+
 			vim.keymap.set("n", "<leader>F", builtin.live_grep, {})
+			vim.keymap.set("n", "<leader>e", builtin.buffers, {})
 		end,
 	},
 	{
