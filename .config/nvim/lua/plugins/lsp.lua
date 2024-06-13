@@ -53,6 +53,65 @@ return {
 				},
 			})
 
+			lspconfig.tailwindcss.setup({
+				capabilities = lsp_capabilities,
+				settings = {
+					tailwindCSS = {
+						experimental = {
+							classRegex = {
+								"@?class\\(([^]*)\\)",
+								"'([^']*)'",
+							},
+						},
+					},
+				},
+			})
+
+			lspconfig.intelephense.setup({
+				capabilities = lsp_capabilities,
+				settings = {
+					filetypes = { "php", "blade" },
+					settings = {
+						intelephense = {
+							filetypes = { "php", "blade" },
+							files = {
+								associations = { "*.php", "*.blade.php" },
+								maxSize = 5000000,
+							},
+						},
+					},
+				},
+			})
+
+			local emmet_capabilities = lsp_capabilities
+			emmet_capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+			lspconfig.emmet_ls.setup({
+				capabilities = emmet_capabilities,
+				settings = {
+					filetypes = {
+						"astro",
+						"blade",
+						"css",
+						"eruby",
+						"html",
+						"htmldjango",
+						"javascriptreact",
+						"less",
+						"pug",
+						"sass",
+						"scss",
+						"svelte",
+						"typescriptreact",
+						"vue",
+					},
+				},
+			})
+
+			lspconfig.zls.setup({
+				capabilities = lsp_capabilities,
+			})
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
 				callback = function(event)
