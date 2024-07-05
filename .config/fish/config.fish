@@ -36,6 +36,8 @@ end
 set -gx EDITOR "nvim"
 set -gx GIT_EDITOR "nvim"
 
+fzf --fish | source
+
 set -gx PYENV_ROOT "$HOME/.pyenv"
 fish_add_path "$PYENV_ROOT/bin"
 pyenv init - | source
