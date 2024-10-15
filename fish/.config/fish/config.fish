@@ -18,6 +18,11 @@ set -gx GIT_EDITOR "nvim"
 # Docker
 source ~/.orbstack/shell/init.fish 2>/dev/null || :
 
+# Android
+set -gx JAVA_HOME "/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+set -gx ANDROID_HOME "$HOME/Library/Android/sdk"
+set -gx NDK_HOME "$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
+
 # PHP
 fish_add_path "$HOME/.composer/vendor/bin"
 
