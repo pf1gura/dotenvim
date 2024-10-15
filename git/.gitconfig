@@ -1,3 +1,6 @@
+[include]
+	path = /Users/pf1gura/.dotfiles/git/catppuccin.gitconfig
+
 [user]
     nam = Przemyslaw Figura
     email = github.enlarging980@passinbox.com
@@ -9,7 +12,8 @@
     diffFilter = delta --color-only
 
 [delta]
-    navigate = true    # use n and N to move between diff sections
+    navigate = true
+    features = catppuccin-macchiato
 
 [merge]
     conflictstyle = diff3
