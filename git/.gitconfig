@@ -1,10 +1,6 @@
 [include]
 	path = /Users/pf1gura/.dotfiles/git/catppuccin.gitconfig
 
-[user]
-    nam = Przemyslaw Figura
-    email = github.enlarging980@passinbox.com
-
 [core]
     pager = delta
 
