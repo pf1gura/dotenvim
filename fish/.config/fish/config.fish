@@ -27,6 +27,7 @@ set -gx NDK_HOME "$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 fish_add_path "$HOME/.composer/vendor/bin"
 
 # TypeScript
+set --universal nvm_default_version 23
 set -gx DENO_INSTALL "/Users/pf1gura/.deno"
 fish_add_path "$DENO_INSTALL/bin"
 set --export BUN_INSTALL "$HOME/.bun"

@@ -9,7 +9,7 @@
 
 [delta]
     navigate = true
-    features = catppuccin-latte
+    features = catppuccin-macchiato
 
 [merge]
     conflictstyle = diff3
